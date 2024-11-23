@@ -1,5 +1,11 @@
-node_modules/
-*.env
-ios/build/
-android/app/build/
+# Node.js (backend) related
+/node_modules
+/dist
 
+# Godot (frontend) related
+/.import/
+export/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
