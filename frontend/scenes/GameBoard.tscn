@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://brtwfakjv3unv"]
+
+[ext_resource type="Script" path="res://scripts/game_board.gd" id="1_2ybpx"]
+[ext_resource type="Texture2D" uid="uid://dndoloxatcdqk" path="res://assets/game_board.png" id="2_ulg5k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_el62t"]
+size = Vector2(1080, 1080)
+
+[node name="GameBoard" type="StaticBody2D"]
+script = ExtResource("1_2ybpx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ulg5k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_el62t")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

@@ -1,0 +1,329 @@
+[gd_scene load_steps=24 format=3 uid="uid://8lgaqpm41taj"]
+
+[ext_resource type="Script" path="res://scripts/main_menu_list.gd" id="1_fc3ru"]
+[ext_resource type="Texture2D" uid="uid://c8sssc2fbpfp6" path="res://assets/icon.svg" id="2_74ibx"]
+[ext_resource type="Script" path="res://scripts/badges_container.gd" id="3_tnv60"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lux4p"]
+bg_color = Color(0.125, 0.1875, 0.25, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aasv0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b7yi3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3s1ae"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3yhi1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tkun0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0voih"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6do3t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dw8k1"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_wtxdg"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_1lyxh"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_gqq3w"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_6bn13"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_h0dni"]
+thickness = 8
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_oph2s"]
+color = Color(0.28823, 0.2257, 0.37, 1)
+thickness = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mmg1g"]
+bg_color = Color(0.216, 0.3448, 0.4, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1nhb5"]
+bg_color = Color(0.2816, 0.359253, 0.64, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2cufe"]
+bg_color = Color(0.6, 0.336, 0.336, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_evjmh"]
+bg_color = Color(0.4323, 0.6, 0.366, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ol64s"]
+bg_color = Color(0.1045, 0.55, 0.394075, 1)
+
+[node name="MainMenuList" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+script = ExtResource("1_fc3ru")
+
+[node name="TopBar" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lux4p")
+
+[node name="MarginContainer" type="MarginContainer" parent="TopBar"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="PlayerInfoGrid" type="VBoxContainer" parent="TopBar/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlayerInfoGrid" type="HBoxContainer" parent="TopBar/MarginContainer/PlayerInfoGrid"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="VerticalGrid" type="BoxContainer" parent="TopBar/MarginContainer/PlayerInfoGrid/PlayerInfoGrid"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+vertical = true
+
+[node name="PlayerIcon" type="Button" parent="TopBar/MarginContainer/PlayerInfoGrid/PlayerInfoGrid/VerticalGrid"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_icons/icon = ExtResource("2_74ibx")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_aasv0")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_b7yi3")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3s1ae")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_3yhi1")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_tkun0")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_0voih")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_6do3t")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_dw8k1")
+
+[node name="PlayerExpSlider" type="HSlider" parent="TopBar/MarginContainer/PlayerInfoGrid/PlayerInfoGrid/VerticalGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.6
+theme_override_icons/grabber = SubResource("ImageTexture_wtxdg")
+theme_override_icons/grabber_highlight = SubResource("ImageTexture_1lyxh")
+theme_override_icons/grabber_disabled = SubResource("ImageTexture_gqq3w")
+theme_override_icons/tick = SubResource("ImageTexture_6bn13")
+theme_override_styles/slider = SubResource("StyleBoxLine_h0dni")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_oph2s")
+value = 50.0
+editable = false
+scrollable = false
+
+[node name="PlayerMarginContainer" type="MarginContainer" parent="TopBar/MarginContainer/PlayerInfoGrid/PlayerInfoGrid"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PlayerName" type="Label" parent="TopBar/MarginContainer/PlayerInfoGrid/PlayerInfoGrid"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
+text = "Player Name Goes Here"
+vertical_alignment = 1
+
+[node name="PlayerCurrency" type="Label" parent="TopBar/MarginContainer/PlayerInfoGrid/PlayerInfoGrid"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
+text = "🪙9999999999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="TopBar/MarginContainer/PlayerInfoGrid/PlayerInfoGrid"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_right = 25
+
+[node name="MenuPages" type="TabContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 2
+tabs_visible = false
+
+[node name="ShopArea" type="MarginContainer" parent="MenuPages"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+metadata/_tab_index = 0
+
+[node name="SkinsArea" type="MarginContainer" parent="MenuPages"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+metadata/_tab_index = 1
+
+[node name="PlayArea" type="MarginContainer" parent="MenuPages"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+metadata/_tab_index = 2
+
+[node name="GameModesList" type="VBoxContainer" parent="MenuPages/PlayArea"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="NormalGame" type="Button" parent="MenuPages/PlayArea/GameModesList"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 128
+text = "Normal"
+
+[node name="UltimateGame" type="Button" parent="MenuPages/PlayArea/GameModesList"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 128
+text = "Ultimate"
+
+[node name="GameTypesList" type="VBoxContainer" parent="MenuPages/PlayArea"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="StartOnline" type="Button" parent="MenuPages/PlayArea/GameTypesList"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 128
+disabled = true
+text = "Online"
+
+[node name="StartPrivate" type="Button" parent="MenuPages/PlayArea/GameTypesList"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 128
+disabled = true
+text = "Private"
+
+[node name="Local" type="Button" parent="MenuPages/PlayArea/GameTypesList"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 128
+disabled = true
+text = "Local"
+
+[node name="Blitz" type="Button" parent="MenuPages/PlayArea/GameTypesList"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 128
+disabled = true
+text = "Blitz"
+
+[node name="Offline" type="Button" parent="MenuPages/PlayArea/GameTypesList"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 128
+text = "Offline"
+
+[node name="BadgesArea" type="MarginContainer" parent="MenuPages"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+metadata/_tab_index = 3
+
+[node name="BadgesContainer" type="ScrollContainer" parent="MenuPages/BadgesArea"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+script = ExtResource("3_tnv60")
+
+[node name="BadgesList" type="VBoxContainer" parent="MenuPages/BadgesArea/BadgesContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+
+[node name="SocialArea" type="MarginContainer" parent="MenuPages"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+metadata/_tab_index = 4
+
+[node name="ButtonsBar" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.15
+theme_override_constants/separation = 0
+
+[node name="ShopButton" type="Button" parent="ButtonsBar"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_mmg1g")
+text = "SHOP"
+
+[node name="SkinsButton" type="Button" parent="ButtonsBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_1nhb5")
+text = "SKINS
+"
+
+[node name="PlayButton" type="Button" parent="ButtonsBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_2cufe")
+text = "PLAY"
+
+[node name="BadgesButton" type="Button" parent="ButtonsBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_evjmh")
+text = "BADGES"
+
+[node name="SocialButton" type="Button" parent="ButtonsBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_ol64s")
+text = "SOCIAL"

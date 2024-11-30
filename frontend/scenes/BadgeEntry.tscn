@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmdv5i2ldu0qw"]
+
+[ext_resource type="Texture2D" uid="uid://c8sssc2fbpfp6" path="res://assets/icon.svg" id="1_vqbws"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_0oqod"]
+color = Color(0.154876, 0.154876, 0.154876, 1)
+thickness = 32
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ndivd"]
+color = Color(0.4071, 0.69, 0.572125, 1)
+thickness = 32
+
+[node name="BadgeEntry" type="HBoxContainer"]
+size_flags_horizontal = 4
+
+[node name="BadgeIcon" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_vqbws")
+
+[node name="BadgeInfo" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="BadgeName" type="Label" parent="BadgeInfo"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
+text = "Name of badge/achievement"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BadgeExp" type="HSlider" parent="BadgeInfo"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/slider = SubResource("StyleBoxLine_0oqod")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_ndivd")
+value = 50.0

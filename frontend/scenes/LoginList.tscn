@@ -1,0 +1,104 @@
+[gd_scene load_steps=2 format=3 uid="uid://bac1ahbki1jup"]
+
+[ext_resource type="Script" path="res://scripts/login_list.gd" id="1_62uih"]
+
+[node name="LoginList" type="VBoxContainer"]
+theme_override_constants/separation = 64
+alignment = 1
+script = ExtResource("1_62uih")
+
+[node name="Username" type="TextEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 64
+placeholder_text = "Tester_Email@gmail.com"
+scroll_fit_content_height = true
+caret_blink = true
+caret_move_on_right_click = false
+caret_multiple = false
+
+[node name="Password" type="TextEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 64
+placeholder_text = "Password"
+scroll_fit_content_height = true
+caret_blink = true
+caret_move_on_right_click = false
+caret_multiple = false
+
+[node name="PasswordRetype" type="TextEdit" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 64
+placeholder_text = "Re-type Password"
+scroll_fit_content_height = true
+caret_blink = true
+caret_move_on_right_click = false
+caret_multiple = false
+
+[node name="ErrorMessage" type="Label" parent="."]
+layout_mode = 2
+
+[node name="LoginButtons" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Login" type="Button" parent="LoginButtons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 64
+text = "Login"
+
+[node name="SignUp" type="Button" parent="LoginButtons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 64
+text = "Sign Up"
+
+[node name="LoginGoogle" type="Button" parent="LoginButtons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 64
+text = "Login Google"
+
+[node name="LoginGuest" type="Button" parent="LoginButtons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 64
+text = "Login Guest"
+
+[node name="SignupButtons" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Confirm" type="Button" parent="SignupButtons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 64
+text = "Confirm"
+
+[node name="Back" type="Button" parent="SignupButtons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 64
+text = "Back"
+
+[node name="Button" type="Button" parent="SignupButtons"]
+layout_mode = 2
+
+[connection signal="button_up" from="LoginButtons/SignUp" to="." method="_on_sign_up_button_up"]
+[connection signal="button_up" from="SignupButtons/Confirm" to="." method="_on_confirm_button_up"]
+[connection signal="button_up" from="SignupButtons/Back" to="." method="_on_back_button_up"]
+[connection signal="pressed" from="SignupButtons/Button" to="." method="_on_button_pressed"]

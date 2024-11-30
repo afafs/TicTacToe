@@ -1,0 +1,139 @@
+[gd_scene load_steps=14 format=3 uid="uid://dp2v7stgmaatu"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_bvrpq"]
+[ext_resource type="Texture2D" uid="uid://dndoloxatcdqk" path="res://assets/game_board.png" id="3_8iwbj"]
+[ext_resource type="Script" path="res://scripts/game_board.gd" id="3_33sb7"]
+[ext_resource type="Texture2D" uid="uid://c8sssc2fbpfp6" path="res://assets/icon.svg" id="3_l22wr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mf6jc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v5wwx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1u4yb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7ofl0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jd3jb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f8d2l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_66ncs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ola0r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_el62t"]
+size = Vector2(1080, 1080)
+
+[node name="Game" type="Node"]
+script = ExtResource("1_bvrpq")
+
+[node name="SafeArea" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OpponentHUD" type="PanelContainer" parent="SafeArea"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="HUD" type="MarginContainer" parent="SafeArea/OpponentHUD"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="HUDGrid" type="HBoxContainer" parent="SafeArea/OpponentHUD/HUD"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Emotes" type="Button" parent="SafeArea/OpponentHUD/HUD/HUDGrid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "😂"
+
+[node name="PlayerName" type="Label" parent="SafeArea/OpponentHUD/HUD/HUDGrid"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 48
+text = "Player Name Goes Here"
+vertical_alignment = 1
+
+[node name="PlayerIcon" type="Button" parent="SafeArea/OpponentHUD/HUD/HUDGrid"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_icons/icon = ExtResource("3_l22wr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mf6jc")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_v5wwx")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1u4yb")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_7ofl0")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_jd3jb")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_f8d2l")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_66ncs")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_ola0r")
+
+[node name="PlayerHUD" type="PanelContainer" parent="SafeArea"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="HUD" type="MarginContainer" parent="SafeArea/PlayerHUD"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="HUDGrid" type="HBoxContainer" parent="SafeArea/PlayerHUD/HUD"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="PlayerIcon" type="Button" parent="SafeArea/PlayerHUD/HUD/HUDGrid"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_icons/icon = ExtResource("3_l22wr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mf6jc")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_v5wwx")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1u4yb")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_7ofl0")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_jd3jb")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_f8d2l")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_66ncs")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_ola0r")
+
+[node name="PlayerName" type="Label" parent="SafeArea/PlayerHUD/HUD/HUDGrid"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 48
+text = "Player Name Goes Here"
+vertical_alignment = 1
+
+[node name="Settings" type="Button" parent="SafeArea/PlayerHUD/HUD/HUDGrid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "⚙️"
+
+[node name="Emotes" type="Button" parent="SafeArea/PlayerHUD/HUD/HUDGrid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "😂"
+
+[node name="GameBoard" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_33sb7")
+
+[node name="Sprite2D" type="Sprite2D" parent="GameBoard"]
+texture = ExtResource("3_8iwbj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoard"]
+shape = SubResource("RectangleShape2D_el62t")
+
+[connection signal="input_event" from="GameBoard" to="GameBoard" method="_on_input_event"]
