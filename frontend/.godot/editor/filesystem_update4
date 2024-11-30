@@ -1,3 +1,4 @@
 res://scenes/Main.tscn
-res://scenes/LoginList.tscn
 res://scripts/login_list.gd
+res://scripts/main.gd
+res://scenes/LoginList.tscn

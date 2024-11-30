@@ -5,6 +5,9 @@ extends Control
 
 @onready var login_list_scene = load("res://scenes/LoginList.tscn")
 
+# Backend URL for user registration
+const BACKEND_REGISTER_URL = "http://localhost:5001/api/users/register"
+
 var safe_area_top = 0
 var safe_area_sides = 0
 
@@ -59,7 +62,7 @@ func _connect_buttons(buttons: Array):
 	for button: Button in buttons:
 		match button.name:
 			"Confirm":
-				button.connect("button_up", _login)
+				button.connect("button_up", _sign_up)
 			"Login":
 				button.connect("button_up", _login)
 			"LoginGoogle":
@@ -87,13 +90,83 @@ func _login_google(button: Button) -> void:
 	button.text = "Not available"
 
 
+func _sign_up() -> void:
+	print("First Login")
+	
+	# Get user input from textboxes
+	var email = get_child(0).find_child("Email").text
+	var password = get_child(0).find_child("Password").text
+	var password_retype = get_child(0).find_child("PasswordRetype").text
+	
+	# Validate user input
+	if email == "" or password == "":
+		print("email1")
+		show_error("Email and password cannot be empty.")
+		return
+	if password != password_retype:
+		print("email")
+		show_error("Passwords do not match.")
+		return
+	print("afaf")
+	# Create JSON payload for backend
+	var payload = {"email": email, "password": password}
+	var json_payload = to_json(payload)
+	print(json_payload)
+	# Make HTTP request
+	var http_request = HTTPRequest.new()
+	add_child(http_request)
+	http_request.connect("request_completed", Callable(self, "_on_request_completed"))
+	http_request.request(BACKEND_REGISTER_URL, ["Content-Type: application/json"], HTTPClient.METHOD_POST, json_payload)
+
+
+# Handle HTTP response
+func _on_request_completed(_result: int, response_code: int, _headers: Array, body: PackedByteArray):
+	var response_text = body.get_string_from_utf8()
+	print("Response text:", response_text)
+	var json = JSON.new()
+	var parse_result = json.parse(response_text)
+	
+	if parse_result != OK:
+		print("Failed to parse JSON")
+		show_error("An error occurred while processing the server response.")
+		return
+		
+	var response_data = json.data  # Access the parsed JSON object
+	if response_code == 201:
+		show_message("Registration successful!")
+	else:
+		var error_message = response_data.get("message", "Registration failed.")
+		print("Registration failed:", error_message)
+		show_error(error_message)
+
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("quit"):
 		get_tree().quit()
 
+
+######################
+# HELPERS
+######################
+# Display error messages
+func show_error(message: String) -> void:
+	%ErrorMessage.text = "[color=red]" + message + "[/color]"
+	%ErrorMessage.visible = true
+
+# Display success messages
+func show_message(message: String) -> void:
+	%ErrorMessage.text = "[color=green]" + message + "[/color]"
+	%ErrorMessage.visible = true
+
+# Convert a dictionary to JSON string
+func to_json(data: Dictionary) -> String:
+	return JSON.stringify(data)
+
+
 ######################
 ### FOR DEBUG ONLY ###
 ######################
+
 #func _process(_delta: float) -> void:
 	#%TopMarginSize.text = "Top Margin: " + str(safe_area_top + margin)
 	#%TopBarSize.text = "Top Bar: " + str(%TopBar.size)
